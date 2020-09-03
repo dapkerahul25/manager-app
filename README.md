@@ -1,7 +1,5 @@
 # Basic Manager App with MongoDB + Node + Angular
 
-This example app shows how to create a Node.js API and display its data with an Angular UI.
-
 This project was bootstrapped with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4
 
 **Prerequisites**: 
