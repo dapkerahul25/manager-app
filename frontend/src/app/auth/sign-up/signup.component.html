@@ -1,0 +1,151 @@
+<div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Sign Up</h4>
+        <form [formGroup]="user" (ngSubmit)="onSubmit()">
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input class="form-control" placeholder="First Name" [formControl]="user.controls['firstname']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="user.controls['firstname'].errors?.required && user.controls['firstname'].touched"
+                        class="mat-text-warn">
+                        Enter first name</mat-error>
+                    <mat-error
+                        *ngIf="user.controls['firstname'].errors?.firstname && user.controls['firstname'].touched"
+                        class="mat-text-warn">Invalid Name</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input class="form-control" type="text" placeholder="Last Name"
+                    [formControl]="user.controls['lastname']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="user.controls['lastname'].errors?.required && user.controls['lastname'].touched"
+                        class="mat-text-warn">
+                        Enter last name</mat-error>
+                    <mat-error *ngIf="user.controls['lastname'].errors?.lastname && user.controls['lastname'].touched"
+                        class="mat-text-warn">Invalid Name</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Company Name"
+                    [formControl]="user.controls['company']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="user.controls['company'].errors?.required && user.controls['company'].touched"
+                        class="mat-text-warn">
+                        Enter company name</mat-error>
+                    <mat-error
+                        *ngIf="user.controls['company'].hasError('maxlength') && user.controls['company'].touched"
+                        class="mat-text-warn">You have reached your maximum limit(30) of characters allowed</mat-error>
+
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <textarea class="form-control" placeholder="Address"
+                    [formControl]="user.controls['address']"></textarea>
+                <div class="col-sm-12">
+                    <mat-error *ngIf="user.controls['address'].errors?.required && user.controls['address'].touched"
+                        class="mat-text-warn">
+                        Enter address</mat-error>
+                    <mat-error
+                        *ngIf="user.controls['address'].hasError('maxlength') && user.controls['address'].touched"
+                        class="mat-text-warn">You have reached your maximum limit(50) of characters allowed</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Email" [formControl]="user.controls['email']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="user.controls['email'].errors?.required && user.controls['email'].touched"
+                        class="mat-text-warn">
+                        Enter a email address</mat-error>
+                    <mat-error *ngIf="user.controls['email'].errors?.email && user.controls['email'].touched"
+                        class="mat-text-warn">Invalid email address</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <span class="input-group-text">{{user.value.country_code}} </span>
+                <input class="form-control" placeholder="Mobile" [formControl]="user.controls['mobile']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="isControlHasError('mobile','required')" class="mat-text-warn">Enter a mobile
+                        number</mat-error>
+                    <mat-error *ngIf="isControlHasError('mobile','pattern')" class="mat-text-warn">Enter a valid mobile
+                        number
+                    </mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Date of Birth" [matDatepicker]="dp3" [max]="maxDate"
+                    [formControl]="user.controls['dob']">
+                <mat-datepicker-toggle [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                <div class="col-sm-12">
+                    <mat-error *ngIf="isControlHasError('dob','required')" class="mat-text-warn">
+                        You must include date of birth
+                    </mat-error>
+                    <mat-error *ngIf="isControlHasError('dob','matDatepickerMax')">
+                        Invalid date of birth
+                    </mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Enter password" name="password" type="password"
+                    [formControl]="user.controls['password']">
+                <div class="col-sm-12">
+                    <mat-error
+                        *ngIf="user.controls['password'].hasError('required') && user.controls['password'].touched"
+                        class="mat-text-warn">Password is required.</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Enter password" name="password" type="password"
+                    [formControl]="user.controls['confirmPassword']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="isControlHasError('confirmPassword','required')" class="mat-text-warn">Enter a
+                        confirm password</mat-error>
+                    <mat-error *ngIf="isControlHasError('confirmPassword','equalTo')">Passwords do not
+                        math.</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Sign Up </button>
+            </div>
+            <p class="text-center">Have an account? <a [routerLink]="['/auth/signin']"> Sign In</a> </p>
+
+        </form>
+    </article>
+
+</div>

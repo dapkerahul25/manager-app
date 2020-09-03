@@ -1,0 +1,35 @@
+.custom-sidenav-container { 
+    position: inherit;
+    height: 100%;
+    display: inherit;
+    transform: inherit; 
+}
+
+.card-widget .mat-card-header-text {
+    margin: 4px 0px !important;
+}
+.list {
+    margin: 5px;
+    border: black 1px groove;
+    border-radius: 10px !important;
+}
+.shadow-none {
+    margin: 5px;
+}
+.width-90 {
+    word-wrap: break-word;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-height: 1.8rem;
+    line-height: 1.8rem;
+}
+
+.welcome-card{
+  background-color:  #00acc1;
+  color:white
+}
+
+
+  

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>
+    {{title}}
+</h1>
+
+<div style="font-size: small;margin-bottom: 20px" *ngIf="action && action.employee">
+    <span >Employee Name : {{action.employee.firstname}} {{action.employee.lastname}}</span>
+</div>
+
+<div mat-dialog-content>
+    <p>{{message}}</p>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onDismiss()" style="margin-right: 50px">No</button>
+    <button mat-raised-button color="primary" (click)="onConfirm(action)">Yes</button>
+</div>

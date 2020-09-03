@@ -1,0 +1,41 @@
+<div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;height: 100%;">
+        <h4 class="card-title mt-3 text-center">Sign In</h4>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input class="form-control" name="userName" placeholder="User name" type="text"
+                    [formControl]="form.controls['username']">
+                <div class="col-sm-12">
+                    <mat-error *ngIf="form.controls['username'].errors?.required && form.controls['username'].touched"
+                        class="mat-text-warn">
+                        Email or Mobile is required</mat-error>
+                    <mat-error *ngIf="form.controls['username'].errors?.username && form.controls['username'].touched"
+                        class="mat-text-warn">Invalid username</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Enter password" name="password" type="password"
+                    [formControl]="form.controls['password']">
+                <div class="col-sm-12">
+                    <mat-error
+                        *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
+                        class="mat-text-warn">Password is required.</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Sign In </button>
+            </div>
+            <p class="text-center">Account Not Available? <a [routerLink]="['/auth/signup']"> Sign Up</a> </p>
+
+        </form>
+    </article>
+
+</div>

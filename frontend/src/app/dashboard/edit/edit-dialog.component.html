@@ -1,0 +1,85 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Add Employee</mat-card-title>
+  </mat-card-header>
+
+  <form class="example-form" [formGroup]="emp">
+    <mat-card-content>
+      <!-- firstname -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" [formControl]="emp.controls['firstname']">
+      </mat-form-field>
+      <mat-error *ngIf="emp.controls['firstname'].errors?.required && emp.controls['firstname'].touched"
+        class="mat-text-warn">
+        Enter first name</mat-error>
+      <mat-error *ngIf="emp.controls['firstname'].errors?.firstname && emp.controls['firstname'].touched"
+        class="mat-text-warn">Invalid Name</mat-error>
+
+      <!-- lastname -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" [formControl]="emp.controls['lastname']">
+      </mat-form-field>
+      <mat-error *ngIf="emp.controls['lastname'].errors?.required && emp.controls['lastname'].touched"
+        class="mat-text-warn">
+        Enter last name</mat-error>
+      <mat-error *ngIf="emp.controls['lastname'].errors?.lastname && emp.controls['lastname'].touched"
+        class="mat-text-warn">Invalid Name</mat-error>
+
+      <!-- address -->
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Address" [formControl]="emp.controls['address']"></textarea>
+      </mat-form-field>
+      <mat-error *ngIf="emp.controls['address'].errors?.required && emp.controls['address'].touched"
+        class="mat-text-warn">
+        Enter address</mat-error>
+      <mat-error *ngIf="emp.controls['address'].hasError('maxlength') && emp.controls['address'].touched"
+        class="mat-text-warn">You have reached your maximum limit(50) of characters allowed</mat-error>
+
+      <!-- emp id -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Employee Id" [formControl]="emp.controls['emp_id']">
+      </mat-form-field>
+      <mat-error *ngIf="emp.controls['emp_id'].errors?.required && emp.controls['emp_id'].touched"
+        class="mat-text-warn">
+        Enter employee id </mat-error>
+
+
+      <!-- city -->
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="City" [formControl]="emp.controls['city']">
+      </mat-form-field>
+      <mat-error *ngIf="emp.controls['city'].errors?.required && emp.controls['city'].touched" class="mat-text-warn">
+        Enter city </mat-error>
+      <mat-error *ngIf="emp.controls['city'].errors?.city && emp.controls['city'].touched" class="mat-text-warn">
+        Invalid city</mat-error>
+
+      <!-- mobile -->
+      <mat-form-field class="example-full-width">
+        <span matPrefix>{{emp.value.country_code}} &nbsp;</span>
+        <input matInput placeholder="Mobile" [formControl]="emp.controls['mobile']">
+      </mat-form-field>
+      <mat-error *ngIf="isControlHasError('mobile','required')" class="mat-text-warn">Enter a mobile
+        number</mat-error>
+      <mat-error *ngIf="isControlHasError('mobile','pattern')" class="mat-text-warn">Enter a valid mobile
+        number
+      </mat-error>
+
+      <!-- dob -->
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" [max]="maxDate" (focus)="picker.open()" placeholder="Date of Birth"
+          [formControl]="emp.controls['dob']">
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-error *ngIf="isControlHasError('dob','required')" class="mat-text-warn">
+        You must include date of birth
+      </mat-error>
+      <mat-error *ngIf="isControlHasError('dob','matDatepickerMax')">
+        Invalid date of birth
+      </mat-error>
+
+
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="confirmAddUpdate()">{{submitEmpBtnLbl}}</button>
+    <button mat-stroked-button color="primary" style="margin-left: 20px" (click)="cancelAddUpdate()">Cancel</button>
+  </form>
+</mat-card>
